@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { CoordinatorAgent } from './agents/coordinator.agent';
 import { TranslatorAgent } from './agents/translator.agent';
+import { CodeGenAgent } from './agents/codegen.agent';
+import { CoordinatorAgent } from './agents/coordinator.agent';
 
 @Module({
   controllers: [AppController],
@@ -14,11 +15,18 @@ import { TranslatorAgent } from './agents/translator.agent';
       },
     },
     {
-      provide: CoordinatorAgent,
-      useFactory: (translator: TranslatorAgent) => {
-        return new CoordinatorAgent(translator);
+      provide: CodeGenAgent,
+      useFactory: () => {
+        const apiKey = process.env.OPENAI_API_KEY || '';
+        return new CodeGenAgent(apiKey);
       },
-      inject: [TranslatorAgent],
+    },
+    {
+      provide: CoordinatorAgent,
+      useFactory: (translator: TranslatorAgent, codeGen: CodeGenAgent) => {
+        return new CoordinatorAgent(translator, codeGen);
+      },
+      inject: [TranslatorAgent, CodeGenAgent],
     },
   ],
 })

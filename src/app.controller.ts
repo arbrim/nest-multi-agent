@@ -1,19 +1,19 @@
+// src/app.controller.ts
 import { Controller, Post, Body } from '@nestjs/common';
 import { CoordinatorAgent } from './agents/coordinator.agent';
 
 @Controller()
 export class AppController {
-  constructor(private readonly coordinatorAgent: CoordinatorAgent) {}
+  constructor(private readonly coordinatorAgent: CoordinatorAgent) { }
 
-  @Post('translate')
-  async translate(@Body('text') text: string) {
-    // Return empty translation if user didn't pass any text
+  @Post('agent')
+  async handleRequest(@Body('text') text: string) {
     if (!text || !text.trim()) {
-      return { translation: '' };
+      return { result: '' };
     }
 
-    // Delegate translation to your multi-agent system
-    const translation = await this.coordinatorAgent.handleTranslationRequest(text);
-    return { translation };
+    // Let the coordinator decide which agent to call
+    const result = await this.coordinatorAgent.handleUserRequest(text);
+    return { result };
   }
 }
