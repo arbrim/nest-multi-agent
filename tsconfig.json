@@ -1,0 +1,23 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "module": "CommonJS",
+    "declaration": false,
+    "removeComments": false,
+    "noEmitOnError": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "target": "es2020",
+    "moduleResolution": "node",
+    "lib": ["es2020"],
+    "outDir": "./dist",
+    "sourceMap": true,
+    "baseUrl": "./",
+    "incremental": true,
+    "experimentalDecorators": true,    // Decorators are essential for Nest
+    "emitDecoratorMetadata": true      // Decorator metadata is also essential
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
