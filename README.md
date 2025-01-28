@@ -3,6 +3,8 @@
 
 # NestJS Multi-Agent Translation Example
 
+## Just haning around with AI using nestjs...
+
 A simple multi-agent demonstration using NestJS and the OpenAI API to translate English text to Albanian.  
 It has two agents:
 - **TranslatorAgent:** Responsible for making OpenAI API calls and translating from English to Albanian.
