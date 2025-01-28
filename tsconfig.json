@@ -18,6 +18,6 @@
     "experimentalDecorators": true,    // Decorators are essential for Nest
     "emitDecoratorMetadata": true      // Decorator metadata is also essential
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "v1/entity", "v1/repositories", "v1/services", "v1/controllers"],
   "exclude": ["node_modules", "dist"]
 }
